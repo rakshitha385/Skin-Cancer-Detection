@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melanoma Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container fade-in">
+        <div class="info-container">
+            <div class="info-header">
+                <h1 class="info-title">Melanoma (MEL) Information</h1>
+                <p class="info-subtitle">What you need to know about this diagnosis</p>
+            </div>
+            
+            <div class="info-section">
+                <h2><i class="fas fa-question-circle"></i> What is Melanoma?</h2>
+                <p>Melanoma is the most serious type of skin cancer that develops in the cells (melanocytes) that produce melanin — the pigment that gives your skin its color. Melanoma can develop anywhere on your body, including areas not exposed to the sun.</p>
+            </div>
+            
+            <div class="info-section">
+                <h2><i class="fas fa-search"></i> How is it formed?</h2>
+                <p>Melanoma occurs when something goes wrong in the melanin-producing cells. While the exact cause isn't clear, exposure to ultraviolet (UV) radiation from sunlight or tanning lamps increases your risk. Genetics also play a role in melanoma development.</p>
+            </div>
+            
+            <div class="info-section">
+                <h2><i class="fas fa-exclamation-triangle"></i> Key Characteristics (ABCDE Rule):</h2>
+                <ul>
+                    <li><strong>Asymmetry:</strong> One half doesn't match the other</li>
+                    <li><strong>Border:</strong> Irregular, scalloped, or poorly defined edges</li>
+                    <li><strong>Color:</strong> Varied shades of brown, black, or sometimes pink/red/white/blue</li>
+                    <li><strong>Diameter:</strong> Larger than 6mm (about the size of a pencil eraser)</li>
+                    <li><strong>Evolving:</strong> Changing in size, shape, or color over time</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <h3><i class="fas fa-exclamation-circle"></i> Important Notice</h3>
+                <p>Our model has detected possible signs of melanoma in your submitted image. Melanoma is a serious form of skin cancer that requires prompt medical attention.</p>
+                <p><strong>We strongly recommend consulting a dermatologist or healthcare professional as soon as possible for further evaluation.</strong></p>
+                <p>Early detection significantly improves treatment outcomes.</p>
+            </div>
+            
+            <div class="info-section">
+                <h2><i class="fas fa-stethoscope"></i> Next Steps:</h2>
+                <ul>
+                    <li>Schedule an appointment with a dermatologist immediately</li>
+                    <li>Bring this report to your medical professional</li>
+                    <li>Monitor the area for any changes</li>
+                    <li>Avoid sun exposure to the affected area</li>
+                </ul>
+            </div>
+            
+            <a href="{{ url_for('index') }}" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+</body>
+</html>

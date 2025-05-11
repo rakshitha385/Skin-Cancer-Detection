@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Vascular Lesion Information{% endblock %}
+
+{% block head %}
+<Style>.info-container {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 2rem auto;
+}
+
+.info-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.info-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.info-subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+.info-section {
+    margin-bottom: 2rem;
+}
+
+.info-section h2 {
+    font-size: 1.5rem;
+    color: #4361ee;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.warning-box {
+    background-color: #fff3bf;
+    border-left: 4px solid #ffd43b;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.warning-box h3 {
+    color: #d9480f;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4361ee;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 2rem;
+}
+
+.back-button:hover {
+    color: #3a0ca3;
+    text-decoration: underline;
+}</Style>
+{% endblock %}
+
+{% block content %}
+<div class="container fade-in">
+    <div class="info-container">
+        <div class="info-header">
+            <h1 class="info-title">Vascular Lesion (VASC)</h1>
+            <p class="info-subtitle">What you need to know about this diagnosis</p>
+        </div>
+        
+        <div class="info-section">
+            <h2><i class="fas fa-question-circle"></i> What is a Vascular Lesion?</h2>
+            <p>Vascular lesions are benign growths made up of blood vessels that appear as red or purple marks on the skin. These include hemangiomas, angiomas, and other vascular malformations.</p>
+        </div>
+        
+        <div class="info-section">
+            <h2><i class="fas fa-search"></i> Key Characteristics:</h2>
+            <ul>
+                <li>Red, purple, or blue coloration</li>
+                <li>Flat or slightly raised</li>
+                <li>May blanch (turn white) when pressed</li>
+                <li>Can occur anywhere on the body</li>
+                <li>Size varies from small dots to larger patches</li>
+            </ul>
+        </div>
+        
+        <div class="info-section">
+            <h2><i class="fas fa-check-circle"></i> Good News</h2>
+            <p>Our model has detected a vascular lesion, which is typically benign. Most don't require treatment unless they cause discomfort or cosmetic concerns.</p>
+        </div>
+        
+        <div class="info-section">
+            <h2><i class="fas fa-stethoscope"></i> Next Steps:</h2>
+            <ul>
+                <li>Monitor for any changes in size or color</li>
+                <li>Protect from trauma if in a vulnerable location</li>
+                <li>Consult a dermatologist if it bleeds or grows rapidly</li>
+                <li>Treatment options available for cosmetic concerns</li>
+            </ul>
+        </div>
+        
+        <a href="{{ url_for('index') }}" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

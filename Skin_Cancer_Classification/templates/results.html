@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+
+
+{% block head %}
+<style>
+    .result-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .image-preview {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-preview img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .image-preview:hover img {
+        transform: scale(1.02);
+    }
+
+    .diagnosis-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .diagnosis-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        align-self: flex-start;
+    }
+
+    .badge-akiec {
+        background-color: #cc5de8;
+        color: white;
+    }
+
+    .badge-bcc {
+        background-color: #fcc419;
+        color: white;
+    }
+
+    .badge-bkl {
+        background-color: #22b8cf;
+        color: white;
+    }
+
+    .badge-df {
+        background-color: #ff922b;
+        color: white;
+    }
+
+    .badge-mel {
+        background-color: #ff6b6b;
+        color: white;
+    }
+
+    .badge-nv {
+        background-color: #51cf66;
+        color: white;
+    }
+
+    .badge-vasc {
+        background-color: #748ffc;
+        color: white;
+    }
+
+    .diagnosis-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+    }
+
+    .confidence-meter {
+        width: 100%;
+        height: 10px;
+        background-color: #e9ecef;
+        border-radius: 5px;
+        margin: 1rem 0;
+        overflow: hidden;
+    }
+
+    .confidence-level-custom {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--success));
+        border-radius: 5px;
+        transition: width 0.5s ease;
+    }
+
+    .info-button {
+        background-color: var(--primary);
+        color: white;
+        text-decoration: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 500;
+        margin-top: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+    }
+
+    .info-button:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    }
+
+    .back-button {
+        display: inline-block;
+        margin-top: 1.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .back-button:hover {
+        color: var(--primary-dark);
+        transform: translateX(-5px);
+    }
+
+    @media (max-width: 768px) {
+        .result-container {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container fade-in">
+    <div class="result-container">
+        <div class="image-preview">
+            <img src="{{ url_for('static', filename='uploads/' + image_path) }}" alt="Analyzed Skin Lesion">
+        </div>
+
+        <div class="diagnosis-info">
+            <span class="diagnosis-badge badge-{{ diagnosis }}">{{ diagnosis|upper }}</span>
+            <h1 class="diagnosis-title">Analysis Results</h1>
+            <p>The model has detected characteristics of
+                <strong id="diagnosis-code">{{ diagnosis|upper }}</strong>
+                (<span id="diagnosis-full"></span>) in the submitted image.
+            </p>
+
+            <div class="confidence-meter">
+                <div class="confidence-level-custom"></div>
+            </div>
+            <p>Confidence: <strong>{{ confidence }}%</strong></p>
+
+            <a href="{{ url_for('show_info', diagnosis=diagnosis) }}" class="info-button">
+                <i class="fas fa-info-circle"></i> Learn More About {{ diagnosis|upper }}
+            </a>
+
+            <a href="{{ url_for('index') }}" class="back-button">
+                <i class="fas fa-arrow-left"></i> Analyze Another Image
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add any JavaScript needed for the results page here
+    document.addEventListener('DOMContentLoaded', function () {
+        // Animation for confidence meter
+        const confidenceMeter = document.querySelector('.confidence-level-custom');
+        confidenceMeter.style.width = '0';
+        setTimeout(() => {
+            confidenceMeter.style.width = '{{ confidence }}%';
+        }, 100);
+    });
+
+     // Mapping diagnosis codes to full names
+  const diagnosisMap = {
+    akiec: "Actinic Keratoses",
+    bcc: "Basal Cell Carcinoma",
+    bkl: "Benign Keratosis-like Lesions",
+    df: "Dermatofibroma",
+    mel: "Melanoma",
+    nv: "Melanocytic Nevi",
+    vasc: "Vascular Lesions"
+  };
+
+  // Get diagnosis code from template
+  const diagnosisCode = document.getElementById("diagnosis-code").textContent.toLowerCase();
+
+  // Display full diagnosis name
+  const fullDiagnosis = diagnosisMap[diagnosisCode] || "Unknown Diagnosis";
+  document.getElementById("diagnosis-full").textContent = fullDiagnosis;
+</script>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .cta-button {
+        background: linear-gradient(135deg, #3a0ca3, #4361ee);
+        color: white;
+        border: none;
+        padding: 1.2rem 3rem;
+        font-size: 1.3rem;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        margin-top: 2rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    }
+
+    .info-section {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 4rem 2rem;
+        margin-top: 3rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .info-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Add container style to match your original */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .alert-message {
+        background-color: #4CAF50; /* Success message green */
+        color: white;
+        padding: 1rem;
+        border-radius: 5px;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .alert-message.alert-danger {
+        background-color: #f44336; /* Danger message red */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <!-- Display Flash Messages (if any) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert-message alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Hero Section with Centered Button -->
+    <div class="hero-container">
+        <h1 style="font-size: 3rem; color: #2c3e50; margin-bottom: 1rem;">Skin Cancer Detection</h1>
+        <p style="font-size: 1.2rem; color: #2c3e50; max-width: 700px;">
+            Early detection of skin cancer can save lives. Our AI-powered system helps identify potential skin lesions with clinical accuracy.
+        </p>
+        <a href="/upload" class="cta-button">
+            <i class="fas fa-diagnoses"></i> Start Diagnosis
+        </a>
+    </div>
+
+    <!-- Information Section Below -->
+    <div class="container">
+        <section class="info-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #2c3e50;">About Skin Cancer</h2>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3><i class="fas fa-info-circle" style="color: #4361ee;"></i> What is Skin Cancer?</h3>
+                    <p>Skin cancer occurs when abnormal cells grow uncontrollably in the skin layers. The main types are basal cell carcinoma, squamous cell carcinoma, and melanoma.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-exclamation-triangle" style="color: #f72585;"></i> Warning Signs</h3>
+                    <p>Look for changes in size, shape, or color of moles or skin lesions. Remember the ABCDE rule for melanoma detection.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-shield-alt" style="color: #4cc9f0;"></i> Prevention</h3>
+                    <p>Use sunscreen, avoid peak sun hours, wear protective clothing, and regularly check your skin for changes.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

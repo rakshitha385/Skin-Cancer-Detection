@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Basal Cell Carcinoma Information{% endblock %}
+
+{% block head %}
+<!-- Same style block as AKIEC -->
+ <Style>.info-container {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 2rem auto;
+}
+
+.info-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.info-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.info-subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+.info-section {
+    margin-bottom: 2rem;
+}
+
+.info-section h2 {
+    font-size: 1.5rem;
+    color: #4361ee;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.warning-box {
+    background-color: #fff3bf;
+    border-left: 4px solid #ffd43b;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.warning-box h3 {
+    color: #d9480f;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4361ee;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 2rem;
+}
+
+.back-button:hover {
+    color: #3a0ca3;
+    text-decoration: underline;
+}
+</Style>
+{% endblock %}
+
+{% block content %}
+<div class="container fade-in">
+    <div class="info-container">
+        <div class="info-header">
+            <h1 class="info-title">Basal Cell Carcinoma (BCC)</h1>
+            <p class="info-subtitle">What you need to know about this diagnosis</p>
+        </div>
+        
+        <div class="info-section">
+            <h2><i class="fas fa-question-circle"></i> What is BCC?</h2>
+            <p>Basal cell carcinoma is the most common form of skin cancer that begins in the basal cells. BCCs often appear as slightly transparent bumps on the skin, though they can take other forms.</p>
+        </div>
+        
+        <div class="info-section">
+            <h2><i class="fas fa-search"></i> Key Characteristics:</h2>
+            <ul>
+                <li>Pearly or waxy bump, often with visible blood vessels</li>
+                <li>Flat, flesh-colored or brown scar-like lesion</li>
+                <li>Bleeding or scabbing sore that heals and returns</li>
+                <li>Most common on sun-exposed areas (face and neck)</li>
+            </ul>
+        </div>
+        
+        <div class="warning-box">
+            <h3><i class="fas fa-exclamation-circle"></i> Medical Recommendation</h3>
+            <p>Our model has detected possible signs of basal cell carcinoma. While BCC grows slowly and rarely spreads, it can cause significant local damage if untreated.</p>
+            <p><strong>We recommend consulting a dermatologist promptly for evaluation and treatment.</strong></p>
+        </div>
+        
+        <div class="info-section">
+            <h2><i class="fas fa-stethoscope"></i> Next Steps:</h2>
+            <ul>
+                <li>Schedule a dermatology appointment within the next few weeks</li>
+                <li>Protect the area from further sun exposure</li>
+                <li>Document any changes in size or appearance</li>
+                <li>Discuss treatment options with your dermatologist</li>
+            </ul>
+        </div>
+        
+        <a href="{{ url_for('index') }}" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}
